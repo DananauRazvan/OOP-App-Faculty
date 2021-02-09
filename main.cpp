@@ -12,7 +12,7 @@ class Profesor{
         string facultate;
         float rate;
     public:
-        Profesor(string _nume, string _prenume, int _varsta, float _salariu, string _facultate, float _rate);
+        Profesor(string nume, string prenume, int varsta, float salariu, string facultate, float rate);
         ~Profesor();
         virtual void getData();
         virtual void setData();
@@ -25,12 +25,12 @@ class Profesor{
 };
 
 Profesor :: Profesor(string _nume = "", string _prenume = "", int _varsta = 0, float _salariu = 0, string _facultate = "", float _rate = 0){
-    nume = _nume;
-    prenume = _prenume;
-    varsta = _varsta;
-    salariu = _salariu;
-    facultate = _facultate;
-    rate = _rate;
+    this -> nume = nume;
+    this -> prenume = prenume;
+    this -> varsta = varsta;
+    this -> salariu = salariu;
+    this -> facultate = facultate;
+    this -> rate = rate;
 }
 
 Profesor :: ~Profesor(){
@@ -39,29 +39,29 @@ Profesor :: ~Profesor(){
 
 void Profesor :: setData(){
     cout << "Nume = ";
-    string _nume;
-    cin >> _nume;
-    nume = _nume;
+    string nume;
+    cin >> nume;
+    this -> nume = nume;
     cout << "Prenume = ";
-    string _prenume;
-    cin >> _prenume;
-    prenume = _prenume;
+    string prenume;
+    cin >> prenume;
+    this -> prenume = prenume;
     cout << "Varsta = ";
-    int _varsta;
-    cin >> _varsta;
-    varsta = _varsta;
+    int varsta;
+    cin >> varsta;
+    this -> varsta = varsta;
     cout << "Salariu = ";
-    float _salariu;
-    cin >> _salariu;
-    salariu = _salariu;
+    float salariu;
+    cin >> salariu;
+    this -> salariu = salariu;
     cout << "Facultatea = ";
-    string _facultatea;
-    cin >> _facultatea;
-    facultate = _facultatea;
+    string facultatea;
+    cin >> facultatea;
+    this -> facultate = facultatea;
     cout << "Suma datorata = ";
-    float _rate;
-    cin >> _rate;
-    rate = _rate;
+    float rate;
+    cin >> rate;
+    this -> rate = rate;
 }
 
 void Profesor :: getData(){
@@ -97,7 +97,7 @@ class Universitar : public Profesor{
         int vechime;
         string materie;
     public:
-        Universitar(string _nume, string _prenume, int _varsta, float _salariu, string _facultate, float _rate, int _vechime, string _materie);
+        Universitar(string nume, string prenume, int varsta, float salariu, string facultate, float rate, int vechime, string materie);
         ~Universitar();
         void setData();
         void getData();
@@ -105,9 +105,9 @@ class Universitar : public Profesor{
         string getMaterie();
 };
 
-Universitar :: Universitar(string _nume = "", string _prenume = "", int _varsta = 0, float _salariu = 0, string _facultate = "", float _rate = 0, int _vechime = 0, string _materie = "") : Profesor(_nume, _prenume, _varsta, _salariu, _facultate, _rate){
-    vechime = _vechime;
-    materie = _materie;
+Universitar :: Universitar(string nume = "", string prenume = "", int varsta = 0, float salariu = 0, string facultate = "", float rate = 0, int vechime = 0, string materie = "") : Profesor(nume, prenume, varsta, salariu, facultate, rate){
+    this -> vechime = vechime;
+    this -> materie = materie;
 }
 
 Universitar :: ~Universitar(){
@@ -117,13 +117,13 @@ Universitar :: ~Universitar(){
 void Universitar :: setData(){
     Profesor :: setData();
     cout << "Vechime = ";
-    int _vechime;
-    cin >> _vechime;
-    vechime = _vechime;
+    int vechime;
+    cin >> vechime;
+    this -> vechime = vechime;
     cout << "Materia predata = ";
-    string _materie;
-    cin >> _materie;
-    materie = _materie;
+    string materie;
+    cin >> materie;
+    this -> materie = materie;
 }
 
 void Universitar :: getData(){
@@ -143,15 +143,15 @@ class exProfesor : public Profesor{
     private:
         int anPlecare;
     public:
-        exProfesor(string _nume, string _prenume, int _varsta, float _salariu, string _facultate, float _rate, int _anPlecare);
+        exProfesor(string nume, string prenume, int varsta, float salariu, string facultate, float rate, int anPlecare);
         ~exProfesor();
         void setData();
         void getData();
         int getAnPlecare();
 };
 
-exProfesor :: exProfesor(string _nume = "", string _prenume = "", int _varsta = 0, float _salariu = 0, string _facultate = "", float _rate = 0, int _anPlecare = 0) : Profesor(_nume, _prenume, _varsta, _salariu, _facultate, _rate){
-    anPlecare = _anPlecare;
+exProfesor :: exProfesor(string nume = "", string prenume = "", int varsta = 0, float salariu = 0, string facultate = "", float rate = 0, int anPlecare = 0) : Profesor(nume, prenume, varsta, salariu, facultate, rate){
+    this -> anPlecare = anPlecare;
 }
 
 exProfesor :: ~exProfesor(){
@@ -160,9 +160,9 @@ exProfesor :: ~exProfesor(){
 void exProfesor :: setData(){
     Profesor :: setData();
     cout << "Anul plecarii = ";
-    int _anPlecare;
-    cin >> _anPlecare;
-    anPlecare = _anPlecare;
+    int anPlecare;
+    cin >> anPlecare;
+    this -> anPlecare = anPlecare;
 }
 
 void exProfesor :: getData(){
@@ -250,9 +250,9 @@ void Meniu :: soldRate(){
 }
 
 void Meniu :: facult(){
-    cout << "\n\nCadrele didactice de la Facultatea de Matematica si Informatica : \n";
+    cout << "\n\nCadrele didactice de la Facultatea de Matematica si Informatica, Universitatea din Bucuresti : \n";
     for(auto it : arr)
-        if(it -> getFacultate() == "matematica-informatica")
+        if(it -> getFacultate() == "Matematica-Informatica")
             cout << it -> getNume() << " " << it -> getPrenume() << '\n';
 }
 
