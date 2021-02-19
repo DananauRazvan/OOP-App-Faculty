@@ -232,6 +232,86 @@ int Assistant :: getEndYear(){
     return endYear;
 }
 
+class Headmaster : public Professor{
+    private:
+        int startYear;
+        int endYear;
+        int noStudents;
+        int noDepartments;
+        float facultyBudget;
+    public:
+        Headmaster(string name, string surname, int age, float salary, string faculty, float loan, int startYear, int endYear, int noStudents, int noDepartments, float facultyBudget);
+        ~Headmaster();
+        void setData();
+        void getData();
+        int getStartYear();
+        int getEndYear();
+        int getNoStudents();
+        int getNoDepartments();
+        float getFacultyBudget();
+};
+
+Headmaster :: Headmaster(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0, int startYear = 0, int endYear = 0, int noStudents = 0, int noDepartments = 0, float facultyBudget = 0) : Professor(name, surname, age, salary, faculty, loan){
+    this -> startYear = startYear;
+    this -> endYear = endYear;
+    this -> noStudents = noStudents;
+    this -> noDepartments = noDepartments;
+    this -> facultyBudget = facultyBudget;
+}
+
+Headmaster :: ~Headmaster(){
+    cout << "The program is over";
+}
+
+void Headmaster :: setData(){
+    Professor :: setData();
+    cout << "The beginning of the period = ";
+    int startYear;
+    cin >> startYear;
+    this -> startYear = startYear;
+    cout << "The end of the period = ";
+    int endYear;
+    cin >> endYear;
+    this -> endYear = endYear;
+    cout << "The number of students from faculty = ";
+    int noStudents;
+    cin >> noStudents;
+    this -> noStudents = noStudents;
+    cout << "The number of departments from faculty = ";
+    int noDepartments;
+    cin >> noDepartments;
+    this -> noDepartments = noDepartments;
+    cout << "The budget of faculty = ";
+    float facultyBudget;
+    cin >> facultyBudget;
+    this -> facultyBudget = facultyBudget;
+}
+
+void Headmaster :: getData(){
+    Professor :: getData();
+    cout << "The beginning period = " << startYear << "\nThe end period = " << endYear << "\nThe number of students from faculty = " << noStudents << "\nThe number of departments from faculty = " << noDepartments << "\nThe budget of faculty = " << facultyBudget << '\n';
+}
+
+int Headmaster :: getStartYear(){
+    return startYear;
+}
+
+int Headmaster :: getEndYear(){
+    return endYear;
+}
+
+int Headmaster :: getNoStudents(){
+    return noStudents;
+}
+
+int Headmaster :: getNoDepartments(){
+    return noDepartments;
+}
+
+float Headmaster :: getFacultyBudget(){
+    return facultyBudget;
+}
+
 class Menu{
     private:
         vector<Professor*> arr;
@@ -245,6 +325,7 @@ class Menu{
         void facultyTeachers();
         void retired5();
         void assistant2021();
+        void headmastersInfo();
 };
 
 void Menu :: process(){
@@ -273,10 +354,16 @@ void Menu :: process(){
                     p -> setData();
                     arr.push_back(p);
                 }
-                else{
-                    cout << "Wrong input! Try University, Ex-Professor or Assistant!";
-                    i--;
-                }
+                else
+                    if(s == "Headmaster"){
+                        p = new Headmaster;
+                        p -> setData();
+                        arr.push_back(p);
+                    }
+                    else{
+                        cout << "Wrong input! Try University, Ex-Professor or Assistant!";
+                        i--;
+                    }
     }
 }
 
@@ -341,6 +428,13 @@ void Menu :: assistant2021(){
         }
 }
 
+void Menu :: headmastersInfo(){
+    cout << "\n\nThe name and surname of the Headmasters, the faculty where they work and the number of students in it : \n";
+    for(auto it : arr)
+        if(Headmaster *h = dynamic_cast<Headmaster*>(it))
+            cout << h -> getName() << " " << h -> getSurname() << " " << h -> getFaculty() << " " << h -> getNoStudents() << '\n'; 
+}
+
 int main(){
     Menu X;
     X.process();
@@ -352,5 +446,6 @@ int main(){
     X.facultyTeachers();
     X.retired5();
     X.assistant2021();
+    X.headmastersInfo();
     return 0;
 }
