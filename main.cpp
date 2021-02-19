@@ -3,277 +3,354 @@
 
 using namespace std;
 
-class Profesor{
+class Professor {
     private:
-        string nume;
-        string prenume;
-        int varsta;
-        float salariu;
-        string facultate;
-        float rate;
+        string name;
+        string surname;
+        int age;
+        float salary;
+        string faculty;
+        float loan;
     public:
-        Profesor(string nume, string prenume, int varsta, float salariu, string facultate, float rate);
-        ~Profesor();
+        Professor(string name, string surname, int age, float salary, string faculty, float loan);
+        ~Professor();
         virtual void getData();
         virtual void setData();
-        string getNume();
-        string getPrenume();
-        int getVarsta();
-        float getSalariu();
-        string getFacultate();
-        float getRate();
+        string getName();
+        string getSurname();
+        int getAge();
+        float getSalary();
+        string getFaculty();
+        float getLoan();
 };
 
-Profesor :: Profesor(string _nume = "", string _prenume = "", int _varsta = 0, float _salariu = 0, string _facultate = "", float _rate = 0){
-    this -> nume = nume;
-    this -> prenume = prenume;
-    this -> varsta = varsta;
-    this -> salariu = salariu;
-    this -> facultate = facultate;
-    this -> rate = rate;
+Professor :: Professor(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0){
+    this -> name = name;
+    this -> surname = surname;
+    this -> age = age;
+    this -> salary = salary;
+    this -> faculty = faculty;
+    this -> loan = loan;
 }
 
-Profesor :: ~Profesor(){
+Professor :: ~Professor(){
     cout << "The program is over";
 }
 
-void Profesor :: setData(){
-    cout << "Nume = ";
-    string nume;
-    cin >> nume;
-    this -> nume = nume;
-    cout << "Prenume = ";
-    string prenume;
-    cin >> prenume;
-    this -> prenume = prenume;
-    cout << "Varsta = ";
-    int varsta;
-    cin >> varsta;
-    this -> varsta = varsta;
-    cout << "Salariu = ";
-    float salariu;
-    cin >> salariu;
-    this -> salariu = salariu;
-    cout << "Facultatea = ";
+void Professor :: setData(){
+    cout << "Name = ";
+    string name;
+    cin >> name;
+    this -> name = name;
+    cout << "Surname = ";
+    string surname;
+    cin >> surname;
+    this -> surname = surname;
+    cout << "Age = ";
+    int age;
+    cin >> age;
+    this -> age = age;
+    cout << "Salary = ";
+    float salary;
+    cin >> salary;
+    this -> salary = salary;
+    cout << "Faculty = ";
     string facultatea;
     cin >> facultatea;
-    this -> facultate = facultatea;
-    cout << "Suma datorata = ";
-    float rate;
-    cin >> rate;
-    this -> rate = rate;
+    this -> faculty = facultatea;
+    cout << "Loan = ";
+    float loan;
+    cin >> loan;
+    this -> loan = loan;
 }
 
-void Profesor :: getData(){
-    cout << "\nNume = " << nume << "\nPrenume = " << prenume << "\nVarsta = " << varsta << "\nSalariu = " << salariu << "\nFacultatea = " << facultate << "\nSuma datorata = " << rate << '\n';
+void Professor :: getData(){
+    cout << "\nName = " << name << "\nSurname = " << surname << "\nAge = " << age << "\nSalary = " << salary << "\nFaculty = " << faculty << "\nLoan = " << loan << '\n';
 }
 
-string Profesor :: getNume(){
-    return nume;
+string Professor :: getName(){
+    return name;
 }
 
-string Profesor :: getPrenume(){
-    return prenume;
+string Professor :: getSurname(){
+    return surname;
 }
 
-int Profesor :: getVarsta(){
-    return varsta;
+int Professor :: getAge(){
+    return age;
 }
 
-float Profesor :: getSalariu(){
-    return salariu;
+float Professor :: getSalary(){
+    return salary;
 }
 
-string Profesor :: getFacultate(){
-    return facultate;
+string Professor :: getFaculty(){
+    return faculty;
 }
 
-float Profesor :: getRate(){
-    return rate;
+float Professor :: getLoan(){
+    return loan;
 }
 
-class Universitar : public Profesor{
+class University : public Professor {
     private:
-        int vechime;
-        string materie;
+        int experience;
+        string course;
     public:
-        Universitar(string nume, string prenume, int varsta, float salariu, string facultate, float rate, int vechime, string materie);
-        ~Universitar();
+        University(string name, string surname, int age, float salary, string faculty, float loan, int experience, string course);
+        ~University();
         void setData();
         void getData();
-        int getVechime();
-        string getMaterie();
+        int getExperience();
+        string getCourse();
 };
 
-Universitar :: Universitar(string nume = "", string prenume = "", int varsta = 0, float salariu = 0, string facultate = "", float rate = 0, int vechime = 0, string materie = "") : Profesor(nume, prenume, varsta, salariu, facultate, rate){
-    this -> vechime = vechime;
-    this -> materie = materie;
+University :: University(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0, int experience = 0, string course = "") : Professor(name, surname, age, salary, faculty, loan){
+    this -> experience = experience;
+    this -> course = course;
 }
 
-Universitar :: ~Universitar(){
+University :: ~University(){
     cout << "The program is over";
 }
 
-void Universitar :: setData(){
-    Profesor :: setData();
-    cout << "Vechime = ";
-    int vechime;
-    cin >> vechime;
-    this -> vechime = vechime;
-    cout << "Materia predata = ";
-    string materie;
-    cin >> materie;
-    this -> materie = materie;
+void University :: setData(){
+    Professor :: setData();
+    cout << "Experience = ";
+    int experience;
+    cin >> experience;
+    this -> experience = experience;
+    cout << "Course = ";
+    string course;
+    cin >> course;
+    this -> course = course;
 }
 
-void Universitar :: getData(){
-    Profesor :: getData();
-    cout << "Vechime = " << vechime << "\nMateria predata = " << materie << '\n';
+void University :: getData(){
+    Professor :: getData();
+    cout << "Experience = " << experience << "\nCourse = " << course << '\n';
 }
 
-int Universitar :: getVechime(){
-    return vechime;
+int University :: getExperience(){
+    return experience;
 }
 
-string Universitar :: getMaterie(){
-    return materie;
+string University :: getCourse(){
+    return course;
 }
 
-class exProfesor : public Profesor{
+class exProfessor : public Professor {
     private:
-        int anPlecare;
+        int retirmentYear;
     public:
-        exProfesor(string nume, string prenume, int varsta, float salariu, string facultate, float rate, int anPlecare);
-        ~exProfesor();
+        exProfessor(string name, string surname, int age, float salary, string faculty, float loan, int retirmentYear);
+        ~exProfessor();
         void setData();
         void getData();
-        int getAnPlecare();
+        int getRetirmentYear();
 };
 
-exProfesor :: exProfesor(string nume = "", string prenume = "", int varsta = 0, float salariu = 0, string facultate = "", float rate = 0, int anPlecare = 0) : Profesor(nume, prenume, varsta, salariu, facultate, rate){
-    this -> anPlecare = anPlecare;
+exProfessor :: exProfessor(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0, int retirmentYear = 0) : Professor(name, surname, age, salary, faculty, loan){
+    this -> retirmentYear = retirmentYear;
 }
 
-exProfesor :: ~exProfesor(){
+exProfessor :: ~exProfessor(){
     cout << "The program is over";
 }
-void exProfesor :: setData(){
-    Profesor :: setData();
-    cout << "Anul plecarii = ";
-    int anPlecare;
-    cin >> anPlecare;
-    this -> anPlecare = anPlecare;
+void exProfessor :: setData(){
+    Professor :: setData();
+    cout << "Retirment year = ";
+    int retirmentYear;
+    cin >> retirmentYear;
+    this -> retirmentYear = retirmentYear;
 }
 
-void exProfesor :: getData(){
-    Profesor :: getData();
-    cout << "Anul plecarii = " << anPlecare << '\n';
+void exProfessor :: getData(){
+    Professor :: getData();
+    cout << "Retirment year = " << retirmentYear << '\n';
 }
 
-int exProfesor :: getAnPlecare(){
-    return anPlecare;
+int exProfessor :: getRetirmentYear(){
+    return retirmentYear;
 }
 
-class Meniu{
+class Assistant : public Professor {
     private:
-        vector<Profesor*> arr;
+        string professorName;
+        int startYear;
+        int endYear;
     public:
-        void proces();
-        void db();
-        void venit();
-        void sub4();
-        void pensionare();
-        void soldRate();
-        void facult();
-        void plecare();
+        Assistant(string name, string surname, int age, float salary, string faculty, float loan, string professorName, int startYear, int endYear);
+        ~Assistant();
+        void setData();
+        void getData();
+        string getProfessorName();
+        int getStartYear();
+        int getEndYear();
 };
 
-void Meniu :: proces(){
-    cout << "Numarul de obiecte = ";
+Assistant :: Assistant(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0, string professorName = "", int startYear = 0, int endYear = 0) : Professor(name, surname, age, salary, faculty, loan){
+    this -> professorName = professorName;
+    this -> startYear = startYear;
+    this -> endYear = endYear;
+}
+
+Assistant :: ~Assistant(){
+    cout << "The program is over";
+}
+
+void Assistant :: setData(){
+    Professor :: setData();
+    cout << "Name of the University professor = ";
+    string professorName;
+    cin >> professorName;
+    this -> professorName = professorName;
+    cout << "The beginning of the period = ";
+    int startYear;
+    cin >> startYear;
+    this -> startYear = startYear;
+    cout << "The end of the period = ";
+    int endYear;
+    cin >> endYear;
+    this -> endYear = endYear;
+}
+
+void Assistant :: getData(){
+    Professor :: getData();
+    cout << "Name of the University professor = " << professorName << "\nThe beginning of the period = " << startYear << "\nThe end of the period = " << endYear << '\n';
+}
+
+string Assistant :: getProfessorName(){
+    return professorName;
+}
+
+int Assistant :: getStartYear(){
+    return startYear;
+}
+
+int Assistant :: getEndYear(){
+    return endYear;
+}
+
+class Menu{
+    private:
+        vector<Professor*> arr;
+    public:
+        void process();
+        void database();
+        void income();
+        void under4000();
+        void retirmentAge();
+        void debt();
+        void facultyTeachers();
+        void retired5();
+        void assistant2021();
+};
+
+void Menu :: process(){
+    cout << "Number of objects = ";
     int n;
     cin >> n;
     for(int i = 0; i < n; i++){
-        Profesor* p;
+        Professor* p;
         string s;
-        cout << "\nDenumirea obiectului " << i + 1 << " = ";
+        cout << "\nObject type " << i + 1 << " = ";
         cin >> s;
-        if(s == "Universitar"){
-            p = new Universitar;
+        if(s == "University"){
+            p = new University;
             p -> setData();
             arr.push_back(p);
         }
         else
-            if(s == "Ex-profesor"){
-                p = new exProfesor;
+            if(s == "Ex-Professor"){
+                p = new exProfessor;
                 p -> setData();
                 arr.push_back(p);
             }
-            else{
-                cout << "Ati introdus o data gresita! Incercati Universitar sau Ex-profesor!";
-                i--;
-            }
+            else
+                if(s == "Assistant"){
+                    p = new Assistant;
+                    p -> setData();
+                    arr.push_back(p);
+                }
+                else{
+                    cout << "Wrong input! Try University, Ex-Professor or Assistant!";
+                    i--;
+                }
     }
 }
 
-void Meniu :: db(){
-    cout << "\n\nBaza de date cuprinde urmatoarele obiecte :\n";
+void Menu :: database(){
+    cout << "\n\nThe Database has the following objects :\n";
     for(auto it : arr)
         it -> getData();
 }
 
-void Meniu :: venit(){
-    cout << "\n\nGenerarea fluturasilor cu venitul lunar :\n";
+void Menu :: income(){
+    cout << "\n\nMonthly salary :\n";
     for(auto it : arr)
-        cout << it -> getNume() << " " << it -> getPrenume() << " = " << it -> getSalariu() << " RON\n";
+        cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getSalary() << " RON\n";
 
 }
 
-void Meniu :: sub4(){
-    cout << "\n\nSalariatii ce au un salariu un salariu mai mic decat 400 Ron :\n";
+void Menu :: under4000(){
+    cout << "\n\nEmployees with a salary less thann 4000 RON :\n";
     for(auto it : arr)
-        if(it -> getSalariu() < 400)
-            cout << it -> getNume() << " " << it -> getPrenume() << " = " << it -> getSalariu() << " RON\n";
+        if(it -> getSalary() < 4000)
+            cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getSalary() << " RON\n";
 }
 
-void Meniu :: pensionare(){
-    cout << "\n\nPersoanele ce au varsta pensionarii :\n";
+void Menu :: retirmentAge(){
+    cout << "\n\nTeachers of retirment age :\n";
     for(auto it : arr)
-        if(it -> getVarsta() > 65)
-            cout << it -> getNume() << " " << it -> getPrenume() << '\n';
+        if(it -> getAge() > 65)
+            cout << it -> getName() << " " << it -> getSurname() << '\n';
 }
 
-void Meniu :: soldRate(){
-    cout << "\n\nPersoanele ce au de achitat rate si suma totala :\n";
+void Menu :: debt(){
+    cout << "\n\nPeople with loans and exact amounts :\n";
     for(auto it : arr)
-        if(it -> getRate() > 0)
-            cout << it -> getNume() << " " << it -> getPrenume() << " = " << it -> getRate() << " RON\n";
+        if(it -> getLoan() > 0)
+            cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getLoan() << " RON\n";
 }
 
-void Meniu :: facult(){
-    cout << "\n\nCadrele didactice de la Facultatea de Matematica si Informatica, Universitatea din Bucuresti : \n";
+void Menu :: facultyTeachers(){
+    cout << "\n\nTeachers at the Faculty of Mathematics and Computer Science, University of Bucharest : \n";
     for(auto it : arr)
-        if(it -> getFacultate() == "Matematica-Informatica")
-            cout << it -> getNume() << " " << it -> getPrenume() << '\n';
+        if(it -> getFaculty() == "Mathematics-ComputerScience")
+            cout << it -> getName() << " " << it -> getSurname() << '\n';
 }
 
-void Meniu :: plecare(){
-    cout << "\n\nCadrele didactice de la facultate care au plecat in ultimii 5 ani : \n";
+void Menu :: retired5(){
+    cout << "\n\nTeachers who have retired in the last 5 years : \n";
     for(auto it : arr)
-        if(exProfesor *xp = dynamic_cast<exProfesor*>(it)){
-            int an = xp -> getAnPlecare();
+        if(exProfessor *xp = dynamic_cast<exProfessor*>(it)){
+            int an = xp -> getRetirmentYear();
             if(an >= 2015)
-                cout << xp -> getNume() << " " << xp -> getPrenume() << '\n';
+                cout << xp -> getName() << " " << xp -> getSurname() << '\n';
         }
 }
+
+void Menu :: assistant2021(){
+    cout << "\n\nAssistants whose employments contract expires in 2021 : \n";
+    for(auto it : arr)
+        if(Assistant *a = dynamic_cast<Assistant*>(it)){
+            int an = a -> getEndYear();
+            if(an == 2021)
+                cout << a -> getName() << " " << a -> getSurname() << '\n';
+        }
+}
+
 int main(){
-    Meniu X;
-    X.proces();
-    X.db();
-    X.venit();
-    X.sub4();
-    X.pensionare();
-    X.soldRate();
-    X.facult();
-    X.plecare();
+    Menu X;
+    X.process();
+    X.database();
+    X.income();
+    X.under4000();
+    X.retirmentAge();
+    X.debt();
+    X.facultyTeachers();
+    X.retired5();
+    X.assistant2021();
     return 0;
 }
