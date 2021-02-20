@@ -438,39 +438,43 @@ void Menu :: process(){
         string s;
         cout << "\nObject type " << i + 1 << " = ";
         cin >> s;
-        if(s == "University"){
-            p = new University;
-            p -> setData();
-            arr.push_back(p);
-        }
-        else
-            if(s == "Ex-Professor"){
-                p = new exProfessor;
+        try{
+            if(s == "University"){
+                p = new University;
                 p -> setData();
                 arr.push_back(p);
             }
             else
-                if(s == "Assistant"){
-                    p = new Assistant;
+                if(s == "Ex-Professor"){
+                    p = new exProfessor;
                     p -> setData();
                     arr.push_back(p);
                 }
                 else
-                    if(s == "Headmaster"){
-                        p = new Headmaster;
+                    if(s == "Assistant"){
+                        p = new Assistant;
                         p -> setData();
                         arr.push_back(p);
                     }
                     else
-                        if(s == "Student"){
-                            p = new Student;
+                        if(s == "Headmaster"){
+                            p = new Headmaster;
                             p -> setData();
                             arr.push_back(p);
                         }
-                        else{
-                            cout << "Wrong input! Try University, Ex-Professor, Assistant, Headmaster or Student!";
-                            i--;
-                        }
+                        else
+                            if(s == "Student"){
+                                p = new Student;
+                                p -> setData();
+                                arr.push_back(p);
+                            }
+                            else
+                                throw 1;
+        }
+        catch(int a){
+            cout << "Wrong input! Try University, Ex-Professor, Assistant, Headmaster or Student!";
+            i--; 
+        }
     }
 }
 
