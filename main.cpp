@@ -3,41 +3,32 @@
 
 using namespace std;
 
-class Professor {
+class Person {
     private:
         string name;
         string surname;
         int age;
-        float salary;
-        string faculty;
-        float loan;
     public:
-        Professor(string name, string surname, int age, float salary, string faculty, float loan);
-        ~Professor();
+        Person(string name, string surname, int age);
+        ~Person();
         virtual void getData();
         virtual void setData();
         string getName();
         string getSurname();
         int getAge();
-        float getSalary();
-        string getFaculty();
-        float getLoan();
 };
 
-Professor :: Professor(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0){
+Person :: Person(string name, string surname, int age){
     this -> name = name;
     this -> surname = surname;
     this -> age = age;
-    this -> salary = salary;
-    this -> faculty = faculty;
-    this -> loan = loan;
 }
 
-Professor :: ~Professor(){
+Person :: ~Person(){
     cout << "The program is over";
 }
 
-void Professor :: setData(){
+void Person :: setData(){
     cout << "Name = ";
     string name;
     cin >> name;
@@ -50,6 +41,51 @@ void Professor :: setData(){
     int age;
     cin >> age;
     this -> age = age;
+}
+
+void Person :: getData(){
+    cout << "\nName = " << name << "\nSurname = " << surname << "\nAge = " << age;
+}
+
+string Person :: getName(){
+    return name;
+}
+
+string Person :: getSurname(){
+    return surname;
+}
+
+int Person :: getAge(){
+    return age;
+}
+
+class Professor : public Person{
+    private:
+        float salary;
+        string faculty;
+        float loan;
+    public:
+        Professor(string name, string surname, int age, float salary, string faculty, float loan);
+        ~Professor();
+        virtual void getData();
+        virtual void setData();
+        float getSalary();
+        string getFaculty();
+        float getLoan();
+};
+
+Professor :: Professor(string name = "", string surname = "", int age = 0, float salary = 0, string faculty = "", float loan = 0) : Person(name, surname, age){
+    this -> salary = salary;
+    this -> faculty = faculty;
+    this -> loan = loan;
+}
+
+Professor :: ~Professor(){
+    cout << "The program is over";
+}
+
+void Professor :: setData(){
+    Person :: setData();
     cout << "Salary = ";
     float salary;
     cin >> salary;
@@ -65,19 +101,8 @@ void Professor :: setData(){
 }
 
 void Professor :: getData(){
-    cout << "\nName = " << name << "\nSurname = " << surname << "\nAge = " << age << "\nSalary = " << salary << "\nFaculty = " << faculty << "\nLoan = " << loan << '\n';
-}
-
-string Professor :: getName(){
-    return name;
-}
-
-string Professor :: getSurname(){
-    return surname;
-}
-
-int Professor :: getAge(){
-    return age;
+    Person :: getData();
+    cout << "\nSalary = " << salary << "\nFaculty = " << faculty << "\nLoan = " << loan << '\n';
 }
 
 float Professor :: getSalary(){
@@ -312,12 +337,86 @@ float Headmaster :: getFacultyBudget(){
     return facultyBudget;
 }
 
+class Student : public Person {
+    private:
+        string address;
+        int yearOfStudy;
+        int startYear;
+        float lastGPA;
+    public:
+        Student(string name, string surname, int age, string address, int yearOfStudy, int startYear, float lastGPA);
+        ~Student();
+        void setData();
+        void getData();
+        string getAddress();
+        int getYearOfStudy();
+        int getStartYear();
+        float getLastGPA();
+};
+
+Student :: Student(string name = "", string surname = "", int age = 0, string address = "", int yearOfStudy = 0, int startYear = 0, float lastGPA = 0) : Person(name, surname, age){
+    this -> address = address;
+    this -> yearOfStudy = yearOfStudy;
+    this -> startYear = startYear;
+    this -> lastGPA = lastGPA;
+}
+
+Student :: ~Student(){
+    cout << "The program is over";
+}
+
+void Student :: setData(){
+    Person :: setData();
+    cout << "Student address = ";
+    string address;
+    cin >> address;
+    this -> address = address;
+    cout << "Current year of study = ";
+    int yearOfStudy;
+    cin >> yearOfStudy;
+    this -> yearOfStudy = yearOfStudy;
+    cout << "Starting year = ";
+    int startYear;
+    cin >> startYear;
+    this -> startYear = startYear;
+    cout << "Last year's GPA = ";
+    float lastGPA;
+    cin >> lastGPA;
+    this -> lastGPA = lastGPA;
+}
+
+void Student :: getData(){
+    Person :: getData();
+    cout << "\nStudent address = " << address << '\n' << "Current year of study = " << yearOfStudy << '\n' << "Starting year = " << startYear << '\n' << "Last year's GPA = " << lastGPA << '\n';
+}
+
+string Student :: getAddress(){
+    return address;
+}
+
+int Student :: getYearOfStudy(){
+    return yearOfStudy;
+}
+
+int Student :: getStartYear(){
+    return startYear;
+}
+
+float Student :: getLastGPA(){
+    return lastGPA;
+}
+
 class Menu{
     private:
-        vector<Professor*> arr;
+        vector<Person*> arr;
     public:
         void process();
         void database();
+        void databaseU();
+        void databaseEXP();
+        void databaseA();
+        void databaseH();
+        void databaseS();
         void income();
         void under4000();
         void retirmentAge();
@@ -326,6 +425,8 @@ class Menu{
         void retired5();
         void assistant2021();
         void headmastersInfo();
+        void studentLast5();
+        void studentGPA8();
 };
 
 void Menu :: process(){
@@ -333,7 +434,7 @@ void Menu :: process(){
     int n;
     cin >> n;
     for(int i = 0; i < n; i++){
-        Professor* p;
+        Person* p;
         string s;
         cout << "\nObject type " << i + 1 << " = ";
         cin >> s;
@@ -360,10 +461,16 @@ void Menu :: process(){
                         p -> setData();
                         arr.push_back(p);
                     }
-                    else{
-                        cout << "Wrong input! Try University, Ex-Professor, Assistant or Headmaster!";
-                        i--;
-                    }
+                    else
+                        if(s == "Student"){
+                            p = new Student;
+                            p -> setData();
+                            arr.push_back(p);
+                        }
+                        else{
+                            cout << "Wrong input! Try University, Ex-Professor, Assistant, Headmaster or Student!";
+                            i--;
+                        }
     }
 }
 
@@ -373,18 +480,55 @@ void Menu :: database(){
         it -> getData();
 }
 
+void Menu :: databaseU(){
+    cout << "\n\nThe database of the University professors :\n";
+    for(auto it : arr)
+        if(University *u = dynamic_cast<University*>(it))
+            u -> getData();
+}
+
+void Menu :: databaseEXP(){
+    cout << "\n\nThe database of the retired professors :\n";
+    for(auto it : arr)
+        if(exProfessor *ex = dynamic_cast<exProfessor*>(it))
+            ex -> getData();
+}
+
+void Menu :: databaseA(){
+    cout << "\n\nThe database of the assistants :\n";
+    for(auto it : arr)
+        if(Assistant *a = dynamic_cast<Assistant*>(it))
+            a -> getData();
+}
+
+void Menu :: databaseH(){
+    cout << "\n\nThe database of the Headmasters :\n";
+    for(auto it : arr)
+        if(Headmaster *h = dynamic_cast<Headmaster*>(it))
+            h -> getData();
+}
+
+void Menu :: databaseS(){
+    cout << "\n\nThe database of the Students :\n";
+    for(auto it : arr)
+        if(Student *s = dynamic_cast<Student*>(it))
+            s -> getData();
+}
+
 void Menu :: income(){
     cout << "\n\nMonthly salary :\n";
     for(auto it : arr)
-        cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getSalary() << " RON\n";
+        if(Professor *p = dynamic_cast<Professor*>(it))
+            cout << p -> getName() << " " << p -> getSurname() << " = " << p -> getSalary() << " RON\n";
 
 }
 
 void Menu :: under4000(){
     cout << "\n\nEmployees with a salary less thann 4000 RON :\n";
     for(auto it : arr)
-        if(it -> getSalary() < 4000)
-            cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getSalary() << " RON\n";
+        if(Professor *p = dynamic_cast<Professor*>(it))
+            if(p -> getSalary() < 4000)
+                cout << p -> getName() << " " << p -> getSurname() << " = " << p -> getSalary() << " RON\n";
 }
 
 void Menu :: retirmentAge(){
@@ -397,15 +541,17 @@ void Menu :: retirmentAge(){
 void Menu :: debt(){
     cout << "\n\nPeople with loans and exact amounts :\n";
     for(auto it : arr)
-        if(it -> getLoan() > 0)
-            cout << it -> getName() << " " << it -> getSurname() << " = " << it -> getLoan() << " RON\n";
+        if(Professor *p = dynamic_cast<Professor*>(it))
+            if(p -> getLoan() > 0)
+                cout << p -> getName() << " " << p -> getSurname() << " = " << p -> getLoan() << " RON\n";
 }
 
 void Menu :: facultyTeachers(){
     cout << "\n\nTeachers at the Faculty of Mathematics and Computer Science, University of Bucharest : \n";
     for(auto it : arr)
-        if(it -> getFaculty() == "Mathematics-ComputerScience")
-            cout << it -> getName() << " " << it -> getSurname() << '\n';
+        if(Professor *p = dynamic_cast<Professor*>((it)))
+            if(p -> getFaculty() == "Mathematics-ComputerScience")
+                cout << p -> getName() << " " << p -> getSurname() << '\n';
 }
 
 void Menu :: retired5(){
@@ -429,16 +575,38 @@ void Menu :: assistant2021(){
 }
 
 void Menu :: headmastersInfo(){
-    cout << "\n\nThe name and surname of the Headmasters, the faculty where they work and the number of students in it : \n";
+    cout << "\n\nThe name and surname of the Headmasters, the faculty where they work and the number of students in it, if there are over 1000 : \n";
     for(auto it : arr)
         if(Headmaster *h = dynamic_cast<Headmaster*>(it))
-            cout << h -> getName() << " " << h -> getSurname() << " " << h -> getFaculty() << " " << h -> getNoStudents() << '\n'; 
+            if(h -> getNoStudents() >= 1000)
+                cout << h -> getName() << " " << h -> getSurname() << " " << h -> getFaculty() << " " << h -> getNoStudents() << '\n'; 
 }
 
+void Menu :: studentLast5(){
+    cout << "\n\nThe name an surname of the Students who started faculty since 2016 : \n";
+    for(auto it : arr)
+        if(Student *s = dynamic_cast<Student*>(it))
+            if(s -> getStartYear() >= 2016)
+                cout << s -> getName() << " " << s -> getSurname() << '\n';
+
+}
+
+void Menu :: studentGPA8(){
+    cout << "\n\nThe name, surname and GPA of the Students who got over 8 : \n";
+    for(auto it : arr)
+        if(Student *s = dynamic_cast<Student*>(it))
+            if(s -> getLastGPA() > 8)
+                cout << s -> getName() << " " << s -> getSurname() << " " << s -> getLastGPA() << '\n';
+}
 int main(){
     Menu X;
     X.process();
     X.database();
+    X.databaseU();
+    X.databaseEXP();
+    X.databaseA();
+    X.databaseH();
+    X.databaseS();
     X.income();
     X.under4000();
     X.retirmentAge();
@@ -447,5 +615,7 @@ int main(){
     X.retired5();
     X.assistant2021();
     X.headmastersInfo();
+    X.studentLast5();
+    X.studentGPA8();
     return 0;
 }
