@@ -600,22 +600,67 @@ void Menu :: studentGPA8(){
 }
 int main(){
     Menu X;
-    X.process();
-    X.database();
-    X.databaseU();
-    X.databaseEXP();
-    X.databaseA();
-    X.databaseH();
-    X.databaseS();
-    X.income();
-    X.under4000();
-    X.retirmentAge();
-    X.debt();
-    X.facultyTeachers();
-    X.retired5();
-    X.assistant2021();
-    X.headmastersInfo();
-    X.studentLast5();
-    X.studentGPA8();
+
+    int opt;
+    
+    do{
+        cout << "\n1. Add objects\n";
+        cout << "2. Database\n";
+        cout << "3. Monthly salary\n";
+        cout << "4. Teachers who got under 4000\n";
+        cout << "5. Teachers who have reached retirement age\n";
+        cout << "6. Debt\n";
+        cout << "7. Teachers at the Faculty of Mathematics and Computer Science, University of Bucharest\n";
+        cout << "8. Teachers who have retired in the last 5 years\n";
+        cout << "9. Assistants whose employments contract expires in 2021\n";
+        cout << "10. The name and surname of the Headmasters, the faculty where they work and the number of students in it, if there are over 1000\n";
+        cout << "11. The name an surname of the Students who started faculty since 2016\n";
+        cout << "12. The name, surname and GPA of the Students who got over 8\n";
+        cout << "13. Exit\n";
+        
+        cout << "Your option = ";
+        cin >> opt;
+
+        switch(opt){
+            case 1:
+                X.process();
+                break;
+            case 2:
+                X.database();
+                break;
+            case 3:
+                X.income();
+                break;
+            case 4:
+                X.under4000();
+                break;
+            case 5:
+                X.retirmentAge();
+                break;
+            case 6:
+                X.debt();
+                break;
+            case 7:
+                X.facultyTeachers();
+                break;
+            case 8:
+                X.retired5();
+                break;
+            case 9:
+                X.assistant2021();
+                break;
+            case 10:
+                X.headmastersInfo();
+                break;
+            case 11:
+                X.studentLast5();
+                break;
+            case 12:
+                X.studentGPA8();
+                break;
+        }
+
+    } while(opt != 13);
+    
     return 0;
 }
