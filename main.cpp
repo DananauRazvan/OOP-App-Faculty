@@ -524,7 +524,7 @@ void Menu :: income(){
 }
 
 void Menu :: under4000(){
-    cout << "\n\nEmployees with a salary less thann 4000 RON :\n";
+    cout << "\n\nEmployees with a salary less than 4000 RON :\n";
     for(auto it : arr)
         if(Professor *p = dynamic_cast<Professor*>(it))
             if(p -> getSalary() < 4000)
@@ -626,7 +626,40 @@ int main(){
                 X.process();
                 break;
             case 2:
-                X.database();
+                int opt2;
+                do{
+                    cout << "\n1). Global database\n";
+                    cout << "2). University professors database\n";
+                    cout << "3). Retired professors database\n";
+                    cout << "4). Asistants database\n";
+                    cout << "5). Headmasters database\n";
+                    cout << "6). Students database\n";
+                    cout << "7). Exit\n";
+
+                    cout << "Your option = ";
+                    cin >> opt2;
+                    
+                    switch(opt2){
+                        case 1:
+                            X.database();
+                            break;
+                        case 2:
+                            X.databaseU();
+                            break;
+                        case 3:
+                            X.databaseEXP();
+                            break;
+                        case 4:
+                            X.databaseA();
+                            break;
+                        case 5:
+                            X.databaseH();
+                            break;
+                        case 6:
+                            X.databaseS();
+                            break;
+                    }
+                } while(opt2 != 7);
                 break;
             case 3:
                 X.income();
