@@ -361,7 +361,7 @@ void Menu :: process(){
                         arr.push_back(p);
                     }
                     else{
-                        cout << "Wrong input! Try University, Ex-Professor or Assistant!";
+                        cout << "Wrong input! Try University, Ex-Professor, Assistant or Headmaster!";
                         i--;
                     }
     }
